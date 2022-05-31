@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="polou4801">
+
+
+  <material name="orange">
+      <color rgba="1 0.3 0.1 1"/>
+  </material>
+
+  <link name="world"></link>
+
+  <joint name="world_to_base" type="fixed">
+      <parent link="world" />
+      <child link="robot_body" />
+      <origin  rpy="0 0 0" xyz="0 0 0" />
+  </joint>
+
+  <link name="robot_body">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+	      <mesh filename="file:///home/jackfrye/Documents/Robotics/MITCheetah/Modelling/ROS2/workspace/src/motor_sim/meshes/polou_4801_body.dae"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <geometry>
+	      <mesh filename="file:///home/jackfrye/Documents/Robotics/MITCheetah/Modelling/ROS2/workspace/src/motor_sim/meshes/polou_4801_body.dae"/>
+      </geometry>
+    </collision>
+   </link>	 
+
+  <joint name="body_to_rotor" type="fixed">
+      <parent link="robot_body" />
+      <child link="robot_rotor" />
+      <origin  rpy="0 0 0" xyz="0 0 0" />
+  </joint>
+
+  <link name="robot_rotor">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+	      <mesh filename="file:///home/jackfrye/Documents/Robotics/MITCheetah/Modelling/ROS2/workspace/src/motor_sim/meshes/polou_4801_rotor.dae"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <geometry>
+	      <mesh filename="file:///home/jackfrye/Documents/Robotics/MITCheetah/Modelling/ROS2/workspace/src/motor_sim/meshes/polou_4801_rotor.dae"/>
+      </geometry>
+    </collision>
+   </link>	 
+
+</robot>

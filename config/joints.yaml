@@ -1,0 +1,22 @@
+# See https://bitbucket.org/theconstructcore/my-robotic-manipulator/src/master/config/joints.yaml
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Hz
+
+    effort_controllers:
+      type: effort_controllers/JointGroupEffortController
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+effort_controllers:
+  ros__parameters:
+    joints:
+      - body_to_rotor
+    command_interfaces:
+      - position
+    state_interfaces:
+      - position
+      - velocity
+      - effort
+  

@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="polou4801">
+
+
+  <material name="orange">
+      <color rgba="1 0.3 0.1 1"/>
+  </material>
+
+  <link name="world"></link>
+
+  <joint name="world_to_base" type="fixed">
+      <parent link="world" />
+      <child link="robot_body" />
+      <origin  rpy="0 0 0" xyz="0 0 0" />
+  </joint>
+
+  <link name="robot_body">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+	      <mesh filename="file:///home/jackfrye/Documents/Robotics/MITCheetah/Modelling/ROS2/workspace/src/motor_sim/meshes/polou_4801_body_x100.dae"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <geometry>
+	      <mesh filename="file:///home/jackfrye/Documents/Robotics/MITCheetah/Modelling/ROS2/workspace/src/motor_sim/meshes/polou_4801_body_x100.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="9.4" />
+        <inertia ixx="0.242833" ixy="0.0" ixz="0.0" iyy="0.242833" iyz="0.0" izz="0.29375" />      
+    </inertial>     
+  </link>	 
+
+  <joint name="body_to_rotor" type="revolute">
+      <parent link="robot_body" />
+      <child link="robot_rotor" />
+      <axis xyz="0 0 1" />
+      <origin  xyz="0 0 0 " rpy="0 0 0" />
+      <limit lower="0" upper="${4*pi}" effort="10" velocity="3"/>
+  </joint>
+
+  <link name="robot_rotor">
+    <visual>
+      <origin xyz="0 0 6.5" rpy="0 0 0" />
+      <geometry>
+	      <mesh filename="file:///home/jackfrye/Documents/Robotics/MITCheetah/Modelling/ROS2/workspace/src/motor_sim/meshes/polou_4801_rotor_x100.dae"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <collision>
+      <origin xyz="0 0 6.5" rpy="0 0 0" />    
+      <geometry>
+	      <mesh filename="file:///home/jackfrye/Documents/Robotics/MITCheetah/Modelling/ROS2/workspace/src/motor_sim/meshes/polou_4801_rotor_x100.dae"/>
+      </geometry>
+    </collision>
+    <inertial>
+        <origin xyz="0 0 6.5" rpy="0 0 0"/>
+        <mass value=".2" />
+        <inertia ixx="0.000016" ixy="0.0" ixz="0.0" iyy="0.000032" iyz="0.0" izz="0.000032" />      
+    </inertial>       
+   </link>	 
+
+  <xacro:include filename="gazebo.xacro" />
+
+
+
+</robot>
